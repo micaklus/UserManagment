@@ -13,7 +13,7 @@ expect fun isNetworkAvailable(): Boolean
 
 suspend inline fun <reified T : Any> HttpResponse.toResult(): NetworkResult<T> {
     return when (status.value) {
-        200 -> NetworkResult.Success(body())
+        200,201 -> NetworkResult.Success(body())
         400 -> NetworkResult.Error(
             NetworkException("Check your credentials and try again!"),
             status.value
